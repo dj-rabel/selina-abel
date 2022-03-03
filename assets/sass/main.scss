@@ -13,16 +13,6 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-// Breakpoints.
-
-@include breakpoints((
-        xlarge: (1281px, 1680px),
-        large: (981px, 1280px),
-        medium: (737px, 980px),
-        small: (361px, 736px),
-        xsmall: (null, 360px)
-));
-
 // Reset.
 // Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
 
@@ -223,7 +213,7 @@ em, i {
 
 hr {
   border: 0;
-  border-top: solid 1px #ddd;
+  border-top: solid 1px rgba(160, 160, 160, 0.3);
   padding: 1.5em 0 0 0;
   margin: 1.75em 0 0 0;
 }
@@ -697,13 +687,17 @@ ul.actions {
           'max-height 0.5s ease-in-out'
   ));
 
+  @include breakpoint('<=small') {
+    @include vendor('flex-direction', 'column-reverse');
+  }
+
   > .panel {
     position: static;
     @include vendor('transition', 'opacity 0.25s ease-in-out');
     margin-bottom: 0;
     padding: $spacing-section-top $spacing-section-left 2.5em $spacing-section-right;
     width: 100%;
-    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25); // @todo ADJUST!
+    //box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25); // @todo ADJUST!
 
     @include breakpoint('<=small') {
       padding: $spacing-section-top-small $spacing-section-left-small 1.5em $spacing-section-right-small;
@@ -746,6 +740,8 @@ ul.actions {
       @include vendor('align-items', 'center');
 
       &.inactive ~ .sidebar {
+        display: block;
+        pointer-events: initial;
         transition-delay: 0.75s;
         opacity: 1;
         @include vendor('transform', 'translateX(0em)');
@@ -902,11 +898,14 @@ ul.actions {
   }
 
   .sidebar {
+    position: relative;
+    pointer-events: none;
     opacity: 0;
     width: 7em;
     margin-left: -7em;
     text-align: right;
-    @include vendor('transition', 'all 0.25s ease-in-out 0s');
+    $sidebar-transition-options: ' 0.25s ease-in-out 0s';
+    @include vendor('transition', ('opacity' + $sidebar-transition-options,'transform' + $sidebar-transition-options));
     @include vendor('transform', 'translateX(1em)');
     $padding-top: 3.5em;
     $padding-right: 1em;
@@ -924,16 +923,54 @@ ul.actions {
       border-radius: 100%;
       width: 100%;
       height: auto;
-      margin-bottom: .5em;
     }
 
     div {
-      font-size: .8em;
-      line-height: 1.5;
-      padding-right: .8em;
-
       > * {
-        color: #fff;
+        margin-bottom: 0;
+      }
+    }
+
+    @include breakpoint('>=medium') {
+      img {
+        margin-bottom: .5em;
+      }
+
+      div {
+        font-size: .8em;
+        line-height: 1.5;
+        padding-right: .8em;
+
+        > * {
+          color: #fff;
+        }
+      }
+    }
+
+    @include breakpoint('<=small') {
+      display: none;
+      width: 100%;
+      margin-left: 0;
+      padding: $spacing-section-right-small $spacing-section-right-small 0 $spacing-section-left-small;
+      @include vendor('transition', 'none');
+
+      header {
+        @include vendor('display', 'flex');
+        @include vendor('flex-direction', 'row-reverse');
+        @include vendor('align-items', 'center');
+        padding: 0;
+        margin-bottom: -$spacing-section-top-small; // Kerning! Do not remove!
+      }
+
+      img {
+        max-width: 8em;
+        margin-bottom: 0;
+      }
+
+      div {
+        font-size: 1.2em;
+        align-items: center;
+        padding-right: $spacing-section-left-small;
       }
     }
   }
