@@ -16,7 +16,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 html, body, div, span, applet, object,
-iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+iframe, h1, h2, h3, h4, h5, h6, p, .ce-paragraph, blockquote,
 pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, b,
@@ -1135,7 +1135,7 @@ br.clear {
   clear: both;
 }
 
-p, ul, ol, dl, table, blockquote, form {
+p, .ce-paragraph, ul, ol, dl, table, blockquote, form {
   margin-bottom: 2em;
 }
 
@@ -1238,7 +1238,7 @@ section > :last-child, section:last-child, article > :last-child, article:last-c
 header {
   margin: 0 0 1.5em 0;
 }
-header > p {
+header > p, header > .ce-paragraph {
   margin: 0.5em 0 0 0;
   color: #aaa;
 }
@@ -1777,7 +1777,7 @@ body.is-preload #wrapper {
   margin-bottom: 0;
   width: 100%;
 }
-#main > .panel.intro .text p {
+#main > .panel.intro .text p, #main > .panel.intro .text .ce-paragraph {
   letter-spacing: -0.015em;
   font-size: 0.8em;
   line-height: 1.5em;
@@ -1787,7 +1787,7 @@ body.is-preload #wrapper {
   line-height: 1.25em;
   margin-bottom: 0;
 }
-#main > .panel.intro .text header p {
+#main > .panel.intro .text header p, #main > .panel.intro .text header .ce-paragraph {
   font-size: 1.25em;
   line-height: 1;
   margin: 0.25em 0 0 0;
@@ -1816,7 +1816,7 @@ body.is-preload #wrapper {
   #main > .panel.intro .text {
     padding: 2.75em 2em 2.5em 2em;
   }
-  #main > .panel.intro .text header p {
+  #main > .panel.intro .text header p, #main > .panel.intro .text header .ce-paragraph {
     font-size: 1em;
     margin: 0.25em 0 0 0;
   }
@@ -1973,7 +1973,7 @@ body.is-preload #wrapper {
 .post > header .meta time {
   font-weight: 600;
 }
-.post > p {
+.post > p, .post > .ce-paragraph {
   text-align: justify;
 }
 .post > footer {
@@ -2125,6 +2125,14 @@ ul.contact li:first-child {
     padding-left: 0.5em;
     margin-left: 0.5em;
   }
+}
+
+.ce-paragraph {
+  line-height: inherit;
+}
+
+.ce-block__content, .ce-toolbar__content, .cdx-block {
+  max-width: 100% !important;
 }
 
 /*# sourceMappingURL=main.css.map */

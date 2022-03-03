@@ -1025,3 +1025,12 @@ ul.actions {
     }
   }
 }
+
+.ce-paragraph {
+  @extend p;
+  line-height: inherit;
+}
+
+.ce-block__content, .ce-toolbar__content, .cdx-block {
+  max-width: 100% !important;
+}
