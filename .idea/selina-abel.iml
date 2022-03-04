@@ -6,5 +6,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="@editorjs" level="application" />
     <orderEntry type="library" name="@editorjs/editorjs" level="application" />
+    <orderEntry type="library" name="@editorjs/editorjs" level="application" />
+    <orderEntry type="library" name="ckeditor" level="application" />
   </component>
 </module>
