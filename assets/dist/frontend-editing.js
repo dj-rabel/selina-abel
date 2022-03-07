@@ -591,6 +591,843 @@ class ItalicUI extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
 
 /***/ }),
 
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Strikethrough)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var _strikethrough_strikethroughediting__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./strikethrough/strikethroughediting */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough/strikethroughediting.js");
+/* harmony import */ var _strikethrough_strikethroughui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./strikethrough/strikethroughui */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough/strikethroughui.js");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/strikethrough
+ */
+
+
+
+
+
+/**
+ * The strikethrough feature.
+ *
+ * For a detailed overview check the {@glink features/basic-styles Basic styles feature documentation}
+ * and the {@glink api/basic-styles package page}.
+ *
+ * This is a "glue" plugin which loads the {@link module:basic-styles/strikethrough/strikethroughediting~StrikethroughEditing} and
+ * {@link module:basic-styles/strikethrough/strikethroughui~StrikethroughUI} plugins.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class Strikethrough extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get requires() {
+		return [ _strikethrough_strikethroughediting__WEBPACK_IMPORTED_MODULE_1__["default"], _strikethrough_strikethroughui__WEBPACK_IMPORTED_MODULE_2__["default"] ];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'Strikethrough';
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough/strikethroughediting.js":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough/strikethroughediting.js ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ StrikethroughEditing)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var _attributecommand__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../attributecommand */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/attributecommand.js");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/strikethrough/strikethroughediting
+ */
+
+
+
+
+const STRIKETHROUGH = 'strikethrough';
+
+/**
+ * The strikethrough editing feature.
+ *
+ * It registers the `'strikethrough'` command, the <kbd>Ctrl+Shift+X</kbd> keystroke and introduces the
+ * `strikethroughsthrough` attribute in the model which renders to the view
+ * as a `<s>` element.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class StrikethroughEditing extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'StrikethroughEditing';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		const editor = this.editor;
+
+		// Allow strikethrough attribute on text nodes.
+		editor.model.schema.extend( '$text', { allowAttributes: STRIKETHROUGH } );
+		editor.model.schema.setAttributeProperties( STRIKETHROUGH, {
+			isFormatting: true,
+			copyOnEnter: true
+		} );
+
+		editor.conversion.attributeToElement( {
+			model: STRIKETHROUGH,
+			view: 's',
+			upcastAlso: [
+				'del',
+				'strike',
+				{
+					styles: {
+						'text-decoration': 'line-through'
+					}
+				}
+			]
+		} );
+
+		// Create strikethrough command.
+		editor.commands.add( STRIKETHROUGH, new _attributecommand__WEBPACK_IMPORTED_MODULE_1__["default"]( editor, STRIKETHROUGH ) );
+
+		// Set the Ctrl+Shift+X keystroke.
+		editor.keystrokes.set( 'CTRL+SHIFT+X', 'strikethrough' );
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough/strikethroughui.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough/strikethroughui.js ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ StrikethroughUI)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var ckeditor5_src_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ckeditor5/src/ui */ "./node_modules/ckeditor5/src/ui.js");
+/* harmony import */ var _theme_icons_strikethrough_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../theme/icons/strikethrough.svg */ "./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/strikethrough.svg");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/strikethrough/strikethroughui
+ */
+
+
+
+
+
+
+const STRIKETHROUGH = 'strikethrough';
+
+/**
+ * The strikethrough UI feature. It introduces the Strikethrough button.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class StrikethroughUI extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'StrikethroughUI';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		const editor = this.editor;
+		const t = editor.t;
+
+		// Add strikethrough button to feature components.
+		editor.ui.componentFactory.add( STRIKETHROUGH, locale => {
+			const command = editor.commands.get( STRIKETHROUGH );
+			const view = new ckeditor5_src_ui__WEBPACK_IMPORTED_MODULE_1__.ButtonView( locale );
+
+			view.set( {
+				label: t( 'Strikethrough' ),
+				icon: _theme_icons_strikethrough_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+				keystroke: 'CTRL+SHIFT+X',
+				tooltip: true,
+				isToggleable: true
+			} );
+
+			view.bind( 'isOn', 'isEnabled' ).to( command, 'value', 'isEnabled' );
+
+			// Execute command.
+			this.listenTo( view, 'execute', () => {
+				editor.execute( STRIKETHROUGH );
+				editor.editing.view.focus();
+			} );
+
+			return view;
+		} );
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Subscript)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var _subscript_subscriptediting__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./subscript/subscriptediting */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript/subscriptediting.js");
+/* harmony import */ var _subscript_subscriptui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subscript/subscriptui */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript/subscriptui.js");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/subscript
+ */
+
+
+
+
+
+/**
+ * The subscript feature.
+ *
+ * It loads the {@link module:basic-styles/subscript/subscriptediting~SubscriptEditing} and
+ * {@link module:basic-styles/subscript/subscriptui~SubscriptUI} plugins.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class Subscript extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get requires() {
+		return [ _subscript_subscriptediting__WEBPACK_IMPORTED_MODULE_1__["default"], _subscript_subscriptui__WEBPACK_IMPORTED_MODULE_2__["default"] ];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'Subscript';
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript/subscriptediting.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript/subscriptediting.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SubscriptEditing)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var _attributecommand__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../attributecommand */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/attributecommand.js");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/subscript/subscriptediting
+ */
+
+
+
+
+const SUBSCRIPT = 'subscript';
+
+/**
+ * The subscript editing feature.
+ *
+ * It registers the `sub` command and introduces the `sub` attribute in the model which renders to the view
+ * as a `<sub>` element.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class SubscriptEditing extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'SubscriptEditing';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		const editor = this.editor;
+		// Allow sub attribute on text nodes.
+		editor.model.schema.extend( '$text', { allowAttributes: SUBSCRIPT } );
+		editor.model.schema.setAttributeProperties( SUBSCRIPT, {
+			isFormatting: true,
+			copyOnEnter: true
+		} );
+
+		// Build converter from model to view for data and editing pipelines.
+
+		editor.conversion.attributeToElement( {
+			model: SUBSCRIPT,
+			view: 'sub',
+			upcastAlso: [
+				{
+					styles: {
+						'vertical-align': 'sub'
+					}
+				}
+			]
+		} );
+
+		// Create sub command.
+		editor.commands.add( SUBSCRIPT, new _attributecommand__WEBPACK_IMPORTED_MODULE_1__["default"]( editor, SUBSCRIPT ) );
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript/subscriptui.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript/subscriptui.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SubscriptUI)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var ckeditor5_src_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ckeditor5/src/ui */ "./node_modules/ckeditor5/src/ui.js");
+/* harmony import */ var _theme_icons_subscript_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../theme/icons/subscript.svg */ "./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/subscript.svg");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/subscript/subscriptui
+ */
+
+
+
+
+
+
+const SUBSCRIPT = 'subscript';
+
+/**
+ * The subscript UI feature. It introduces the Subscript button.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class SubscriptUI extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'SubscriptUI';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		const editor = this.editor;
+		const t = editor.t;
+
+		// Add subscript button to feature components.
+		editor.ui.componentFactory.add( SUBSCRIPT, locale => {
+			const command = editor.commands.get( SUBSCRIPT );
+			const view = new ckeditor5_src_ui__WEBPACK_IMPORTED_MODULE_1__.ButtonView( locale );
+
+			view.set( {
+				label: t( 'Subscript' ),
+				icon: _theme_icons_subscript_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+				tooltip: true,
+				isToggleable: true
+			} );
+
+			view.bind( 'isOn', 'isEnabled' ).to( command, 'value', 'isEnabled' );
+
+			// Execute command.
+			this.listenTo( view, 'execute', () => {
+				editor.execute( SUBSCRIPT );
+				editor.editing.view.focus();
+			} );
+
+			return view;
+		} );
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Superscript)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var _superscript_superscriptediting__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./superscript/superscriptediting */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript/superscriptediting.js");
+/* harmony import */ var _superscript_superscriptui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./superscript/superscriptui */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript/superscriptui.js");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/superscript
+ */
+
+
+
+
+
+/**
+ * The superscript feature.
+ *
+ * It loads the {@link module:basic-styles/superscript/superscriptediting~SuperscriptEditing} and
+ * {@link module:basic-styles/superscript/superscriptui~SuperscriptUI} plugins.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class Superscript extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get requires() {
+		return [ _superscript_superscriptediting__WEBPACK_IMPORTED_MODULE_1__["default"], _superscript_superscriptui__WEBPACK_IMPORTED_MODULE_2__["default"] ];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'Superscript';
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript/superscriptediting.js":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript/superscriptediting.js ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SuperscriptEditing)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var _attributecommand__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../attributecommand */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/attributecommand.js");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/superscript/superscriptediting
+ */
+
+
+
+
+const SUPERSCRIPT = 'superscript';
+
+/**
+ * The superscript editing feature.
+ *
+ * It registers the `super` command and introduces the `super` attribute in the model which renders to the view
+ * as a `<super>` element.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class SuperscriptEditing extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'SuperscriptEditing';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		const editor = this.editor;
+		// Allow super attribute on text nodes.
+		editor.model.schema.extend( '$text', { allowAttributes: SUPERSCRIPT } );
+		editor.model.schema.setAttributeProperties( SUPERSCRIPT, {
+			isFormatting: true,
+			copyOnEnter: true
+		} );
+
+		// Build converter from model to view for data and editing pipelines.
+
+		editor.conversion.attributeToElement( {
+			model: SUPERSCRIPT,
+			view: 'sup',
+			upcastAlso: [
+				{
+					styles: {
+						'vertical-align': 'super'
+					}
+				}
+			]
+		} );
+
+		// Create super command.
+		editor.commands.add( SUPERSCRIPT, new _attributecommand__WEBPACK_IMPORTED_MODULE_1__["default"]( editor, SUPERSCRIPT ) );
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript/superscriptui.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript/superscriptui.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SuperscriptUI)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var ckeditor5_src_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ckeditor5/src/ui */ "./node_modules/ckeditor5/src/ui.js");
+/* harmony import */ var _theme_icons_superscript_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../theme/icons/superscript.svg */ "./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/superscript.svg");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/superscript/superscriptui
+ */
+
+
+
+
+
+
+const SUPERSCRIPT = 'superscript';
+
+/**
+ * The superscript UI feature. It introduces the Superscript button.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class SuperscriptUI extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'SuperscriptUI';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		const editor = this.editor;
+		const t = editor.t;
+
+		// Add superscript button to feature components.
+		editor.ui.componentFactory.add( SUPERSCRIPT, locale => {
+			const command = editor.commands.get( SUPERSCRIPT );
+			const view = new ckeditor5_src_ui__WEBPACK_IMPORTED_MODULE_1__.ButtonView( locale );
+
+			view.set( {
+				label: t( 'Superscript' ),
+				icon: _theme_icons_superscript_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+				tooltip: true,
+				isToggleable: true
+			} );
+
+			view.bind( 'isOn', 'isEnabled' ).to( command, 'value', 'isEnabled' );
+
+			// Execute command.
+			this.listenTo( view, 'execute', () => {
+				editor.execute( SUPERSCRIPT );
+				editor.editing.view.focus();
+			} );
+
+			return view;
+		} );
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Underline)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var _underline_underlineediting__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./underline/underlineediting */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline/underlineediting.js");
+/* harmony import */ var _underline_underlineui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./underline/underlineui */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline/underlineui.js");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/underline
+ */
+
+
+
+
+
+/**
+ * The underline feature.
+ *
+ * For a detailed overview check the {@glink features/basic-styles Basic styles feature documentation}
+ * and the {@glink api/basic-styles package page}.
+ *
+ * This is a "glue" plugin which loads the {@link module:basic-styles/underline/underlineediting~UnderlineEditing} and
+ * {@link module:basic-styles/underline/underlineui~UnderlineUI} plugins.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class Underline extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get requires() {
+		return [ _underline_underlineediting__WEBPACK_IMPORTED_MODULE_1__["default"], _underline_underlineui__WEBPACK_IMPORTED_MODULE_2__["default"] ];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'Underline';
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline/underlineediting.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline/underlineediting.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ UnderlineEditing)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var _attributecommand__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../attributecommand */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/attributecommand.js");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/underline/underlineediting
+ */
+
+
+
+
+const UNDERLINE = 'underline';
+
+/**
+ * The underline editing feature.
+ *
+ * It registers the `'underline'` command, the <kbd>Ctrl+U</kbd> keystroke
+ * and introduces the `underline` attribute in the model which renders to the view as an `<u>` element.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class UnderlineEditing extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'UnderlineEditing';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		const editor = this.editor;
+
+		// Allow strikethrough attribute on text nodes.
+		editor.model.schema.extend( '$text', { allowAttributes: UNDERLINE } );
+		editor.model.schema.setAttributeProperties( UNDERLINE, {
+			isFormatting: true,
+			copyOnEnter: true
+		} );
+
+		editor.conversion.attributeToElement( {
+			model: UNDERLINE,
+			view: 'u',
+			upcastAlso: {
+				styles: {
+					'text-decoration': 'underline'
+				}
+			}
+		} );
+
+		// Create underline command.
+		editor.commands.add( UNDERLINE, new _attributecommand__WEBPACK_IMPORTED_MODULE_1__["default"]( editor, UNDERLINE ) );
+
+		// Set the Ctrl+U keystroke.
+		editor.keystrokes.set( 'CTRL+U', 'underline' );
+	}
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline/underlineui.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline/underlineui.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ UnderlineUI)
+/* harmony export */ });
+/* harmony import */ var ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ckeditor5/src/core */ "./node_modules/ckeditor5/src/core.js");
+/* harmony import */ var ckeditor5_src_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ckeditor5/src/ui */ "./node_modules/ckeditor5/src/ui.js");
+/* harmony import */ var _theme_icons_underline_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../theme/icons/underline.svg */ "./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/underline.svg");
+/**
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module basic-styles/underline/underlineui
+ */
+
+
+
+
+
+
+const UNDERLINE = 'underline';
+
+/**
+ * The underline UI feature. It introduces the Underline button.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class UnderlineUI extends ckeditor5_src_core__WEBPACK_IMPORTED_MODULE_0__.Plugin {
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'UnderlineUI';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		const editor = this.editor;
+		const t = editor.t;
+
+		// Add bold button to feature components.
+		editor.ui.componentFactory.add( UNDERLINE, locale => {
+			const command = editor.commands.get( UNDERLINE );
+			const view = new ckeditor5_src_ui__WEBPACK_IMPORTED_MODULE_1__.ButtonView( locale );
+
+			view.set( {
+				label: t( 'Underline' ),
+				icon: _theme_icons_underline_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+				keystroke: 'CTRL+U',
+				tooltip: true,
+				isToggleable: true
+			} );
+
+			view.bind( 'isOn', 'isEnabled' ).to( command, 'value', 'isEnabled' );
+
+			// Execute command.
+			this.listenTo( view, 'execute', () => {
+				editor.execute( UNDERLINE );
+				editor.editing.view.focus();
+			} );
+
+			return view;
+		} );
+	}
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/@ckeditor/ckeditor5-clipboard/src/clipboard.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@ckeditor/ckeditor5-clipboard/src/clipboard.js ***!
@@ -87705,6 +88542,62 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/strikethrough.svg":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/strikethrough.svg ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 16.4c-.8-.4-1.5-.9-2.2-1.5a.6.6 0 0 1-.2-.5l.3-.6h1c1 1.2 2.1 1.7 3.7 1.7 1 0 1.8-.3 2.3-.6.6-.4.6-1.2.6-1.3.2-1.2-.9-2.1-.9-2.1h2.1c.3.7.4 1.2.4 1.7v.8l-.6 1.2c-.6.8-1.1 1-1.6 1.2a6 6 0 0 1-2.4.6c-1 0-1.8-.3-2.5-.6zM6.8 9 6 8.3c-.4-.5-.5-.8-.5-1.6 0-.7.1-1.3.5-1.8.4-.6 1-1 1.6-1.3a6.3 6.3 0 0 1 4.7 0 4 4 0 0 1 1.7 1l.3.7c0 .1.2.4-.2.7-.4.2-.9.1-1 0a3 3 0 0 0-1.2-1c-.4-.2-1-.3-2-.4-.7 0-1.4.2-2 .6-.8.6-1 .8-1 1.5 0 .8.5 1 1.2 1.5.6.4 1.1.7 1.9 1H6.8z\"/><path d=\"M3 10.5V9h14v1.5z\"/></svg>");
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/subscript.svg":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/subscript.svg ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"m7.03 10.349 3.818-3.819a.8.8 0 1 1 1.132 1.132L8.16 11.48l3.819 3.818a.8.8 0 1 1-1.132 1.132L7.03 12.61l-3.818 3.82a.8.8 0 1 1-1.132-1.132L5.9 11.48 2.08 7.662A.8.8 0 1 1 3.212 6.53l3.818 3.82zm8.147 7.829h2.549c.254 0 .447.05.58.152a.49.49 0 0 1 .201.413.54.54 0 0 1-.159.393c-.105.108-.266.162-.48.162h-3.594c-.245 0-.435-.066-.572-.197a.621.621 0 0 1-.205-.463c0-.114.044-.265.132-.453a1.62 1.62 0 0 1 .288-.444c.433-.436.824-.81 1.172-1.122.348-.312.597-.517.747-.615.267-.183.49-.368.667-.553.177-.185.312-.375.405-.57.093-.194.139-.384.139-.57a1.008 1.008 0 0 0-.554-.917 1.197 1.197 0 0 0-.56-.133c-.426 0-.761.182-1.005.546a2.332 2.332 0 0 0-.164.39 1.609 1.609 0 0 1-.258.488c-.096.114-.237.17-.423.17a.558.558 0 0 1-.405-.156.568.568 0 0 1-.161-.427c0-.218.05-.446.151-.683.101-.238.252-.453.452-.646s.454-.349.762-.467a2.998 2.998 0 0 1 1.081-.178c.498 0 .923.076 1.274.228a1.916 1.916 0 0 1 1.004 1.032 1.984 1.984 0 0 1-.156 1.794c-.2.32-.405.572-.613.754-.208.182-.558.468-1.048.857-.49.39-.826.691-1.008.906a2.703 2.703 0 0 0-.24.309z\"/></svg>");
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/superscript.svg":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/superscript.svg ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M15.677 8.678h2.549c.254 0 .447.05.58.152a.49.49 0 0 1 .201.413.54.54 0 0 1-.159.393c-.105.108-.266.162-.48.162h-3.594c-.245 0-.435-.066-.572-.197a.621.621 0 0 1-.205-.463c0-.114.044-.265.132-.453a1.62 1.62 0 0 1 .288-.444c.433-.436.824-.81 1.172-1.122.348-.312.597-.517.747-.615.267-.183.49-.368.667-.553.177-.185.312-.375.405-.57.093-.194.139-.384.139-.57a1.008 1.008 0 0 0-.554-.917 1.197 1.197 0 0 0-.56-.133c-.426 0-.761.182-1.005.546a2.332 2.332 0 0 0-.164.39 1.609 1.609 0 0 1-.258.488c-.096.114-.237.17-.423.17a.558.558 0 0 1-.405-.156.568.568 0 0 1-.161-.427c0-.218.05-.446.151-.683.101-.238.252-.453.452-.646s.454-.349.762-.467a2.998 2.998 0 0 1 1.081-.178c.498 0 .923.076 1.274.228a1.916 1.916 0 0 1 1.004 1.032 1.984 1.984 0 0 1-.156 1.794c-.2.32-.405.572-.613.754-.208.182-.558.468-1.048.857-.49.39-.826.691-1.008.906a2.703 2.703 0 0 0-.24.309zM7.03 10.349l3.818-3.819a.8.8 0 1 1 1.132 1.132L8.16 11.48l3.819 3.818a.8.8 0 1 1-1.132 1.132L7.03 12.61l-3.818 3.82a.8.8 0 1 1-1.132-1.132L5.9 11.48 2.08 7.662A.8.8 0 1 1 3.212 6.53l3.818 3.82z\"/></svg>");
+
+/***/ }),
+
+/***/ "./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/underline.svg":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-basic-styles/theme/icons/underline.svg ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 18v-1.5h14V18zm2.2-8V3.6c0-.4.4-.6.8-.6.3 0 .7.2.7.6v6.2c0 2 1.3 2.8 3.2 2.8 1.9 0 3.4-.9 3.4-2.9V3.6c0-.3.4-.5.8-.5.3 0 .7.2.7.5V10c0 2.7-2.2 4-4.9 4-2.6 0-4.7-1.2-4.7-4z\"/></svg>");
+
+/***/ }),
+
 /***/ "./node_modules/@ckeditor/ckeditor5-core/theme/icons/align-bottom.svg":
 /*!****************************************************************************!*\
   !*** ./node_modules/@ckeditor/ckeditor5-core/theme/icons/align-bottom.svg ***!
@@ -97648,7 +98541,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ckeditor_ckeditor5_list_src_list__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ckeditor/ckeditor5-list/src/list */ "./node_modules/@ckeditor/ckeditor5-list/src/list.js");
 /* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_bold__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/bold */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/bold.js");
 /* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/italic */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/italic.js");
-/* harmony import */ var _plugins_header__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./plugins/header */ "./src/frontend-editing/plugins/header.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_underline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/underline */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_strikethrough__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/strikethrough */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_subscript__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/subscript */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_superscript__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/superscript */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript.js");
+/* harmony import */ var _plugins_header__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./plugins/header */ "./src/frontend-editing/plugins/header.js");
 
 
 /**
@@ -97665,20 +98562,52 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 // import Header from './plugins/_header';
 
-_ckeditor_ckeditor5_editor_balloon_src_ballooneditor__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.querySelector('.contenteditable'), {
+_ckeditor_ckeditor5_editor_balloon_src_ballooneditor__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.querySelector('#me .contenteditable'), {
         plugins: [
             _ckeditor_ckeditor5_essentials_src_essentials__WEBPACK_IMPORTED_MODULE_1__["default"],
-            _plugins_header__WEBPACK_IMPORTED_MODULE_7__["default"],
-            // Heading,
+            _plugins_header__WEBPACK_IMPORTED_MODULE_11__["default"],
+            _ckeditor_ckeditor5_heading_src_heading__WEBPACK_IMPORTED_MODULE_3__["default"],
             _ckeditor_ckeditor5_paragraph_src_paragraph__WEBPACK_IMPORTED_MODULE_2__["default"],
             _ckeditor_ckeditor5_list_src_list__WEBPACK_IMPORTED_MODULE_4__["default"],
             _ckeditor_ckeditor5_basic_styles_src_bold__WEBPACK_IMPORTED_MODULE_5__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_6__["default"]
+            _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_6__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_underline__WEBPACK_IMPORTED_MODULE_7__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_strikethrough__WEBPACK_IMPORTED_MODULE_8__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_subscript__WEBPACK_IMPORTED_MODULE_9__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_superscript__WEBPACK_IMPORTED_MODULE_10__["default"]
         ],
-        toolbar: ['bold', 'italic', 'numberedList', 'bulletedList'],
-        blockToolbar: ['heading', 'paragraph', 'heading1', 'heading2', 'bulletedList', 'numberedList'],
+        toolbar: ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'subscript', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
+    })
+    .then(editor => {
+        console.debug('Editor was initialized', editor);
+
+        // Expose for playing in the console.
+        window.editor = editor;
+    })
+    .catch(error => {
+        console.error(error.stack);
+    });
+
+_ckeditor_ckeditor5_editor_balloon_src_ballooneditor__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.querySelector('#education .contenteditable'), {
+        plugins: [
+            _ckeditor_ckeditor5_essentials_src_essentials__WEBPACK_IMPORTED_MODULE_1__["default"],
+            _ckeditor_ckeditor5_heading_src_heading__WEBPACK_IMPORTED_MODULE_3__["default"],
+            _ckeditor_ckeditor5_paragraph_src_paragraph__WEBPACK_IMPORTED_MODULE_2__["default"],
+            _ckeditor_ckeditor5_list_src_list__WEBPACK_IMPORTED_MODULE_4__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_bold__WEBPACK_IMPORTED_MODULE_5__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_6__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_underline__WEBPACK_IMPORTED_MODULE_7__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_strikethrough__WEBPACK_IMPORTED_MODULE_8__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_subscript__WEBPACK_IMPORTED_MODULE_9__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_superscript__WEBPACK_IMPORTED_MODULE_10__["default"]
+        ],
+        toolbar: ['heading', 'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'subscript', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
     })
     .then(editor => {
         console.debug('Editor was initialized', editor);
