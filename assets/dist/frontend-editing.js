@@ -98535,17 +98535,18 @@ var __webpack_exports__ = {};
   \**************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ckeditor_ckeditor5_editor_balloon_src_ballooneditor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ckeditor/ckeditor5-editor-balloon/src/ballooneditor */ "./node_modules/@ckeditor/ckeditor5-editor-balloon/src/ballooneditor.js");
-/* harmony import */ var _ckeditor_ckeditor5_essentials_src_essentials__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-essentials/src/essentials */ "./node_modules/@ckeditor/ckeditor5-essentials/src/essentials.js");
-/* harmony import */ var _ckeditor_ckeditor5_paragraph_src_paragraph__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ckeditor/ckeditor5-paragraph/src/paragraph */ "./node_modules/@ckeditor/ckeditor5-paragraph/src/paragraph.js");
-/* harmony import */ var _ckeditor_ckeditor5_heading_src_heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ckeditor/ckeditor5-heading/src/heading */ "./node_modules/@ckeditor/ckeditor5-heading/src/heading.js");
-/* harmony import */ var _ckeditor_ckeditor5_list_src_list__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ckeditor/ckeditor5-list/src/list */ "./node_modules/@ckeditor/ckeditor5-list/src/list.js");
-/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_bold__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/bold */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/bold.js");
-/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/italic */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/italic.js");
-/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_underline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/underline */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline.js");
-/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_strikethrough__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/strikethrough */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough.js");
-/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_subscript__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/subscript */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript.js");
-/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_superscript__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/superscript */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript.js");
-/* harmony import */ var _plugins_header__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./plugins/header */ "./src/frontend-editing/plugins/header.js");
+/* harmony import */ var _ckeditor_ckeditor5_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-ui */ "./node_modules/@ckeditor/ckeditor5-ui/src/index.js");
+/* harmony import */ var _ckeditor_ckeditor5_essentials_src_essentials__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ckeditor/ckeditor5-essentials/src/essentials */ "./node_modules/@ckeditor/ckeditor5-essentials/src/essentials.js");
+/* harmony import */ var _ckeditor_ckeditor5_paragraph_src_paragraph__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ckeditor/ckeditor5-paragraph/src/paragraph */ "./node_modules/@ckeditor/ckeditor5-paragraph/src/paragraph.js");
+/* harmony import */ var _ckeditor_ckeditor5_heading_src_heading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ckeditor/ckeditor5-heading/src/heading */ "./node_modules/@ckeditor/ckeditor5-heading/src/heading.js");
+/* harmony import */ var _ckeditor_ckeditor5_list_src_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ckeditor/ckeditor5-list/src/list */ "./node_modules/@ckeditor/ckeditor5-list/src/list.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_bold__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/bold */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/bold.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/italic */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/italic.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_underline__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/underline */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/underline.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_strikethrough__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/strikethrough */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/strikethrough.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_subscript__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/subscript */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/subscript.js");
+/* harmony import */ var _ckeditor_ckeditor5_basic_styles_src_superscript__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ckeditor/ckeditor5-basic-styles/src/superscript */ "./node_modules/@ckeditor/ckeditor5-basic-styles/src/superscript.js");
+/* harmony import */ var _plugins_header__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./plugins/header */ "./src/frontend-editing/plugins/header.js");
 
 
 /**
@@ -98553,7 +98554,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-// import { BlockToolbar } from '@ckeditor/ckeditor5-ui';
+
 
 
 // import Title from '@ckeditor/ckeditor5-heading/src/title';
@@ -98570,19 +98571,19 @@ __webpack_require__.r(__webpack_exports__);
 
 _ckeditor_ckeditor5_editor_balloon_src_ballooneditor__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.querySelector('#me .contenteditable'), {
         plugins: [
-            _ckeditor_ckeditor5_essentials_src_essentials__WEBPACK_IMPORTED_MODULE_1__["default"],
-            _plugins_header__WEBPACK_IMPORTED_MODULE_11__["default"],
-            _ckeditor_ckeditor5_heading_src_heading__WEBPACK_IMPORTED_MODULE_3__["default"],
-            _ckeditor_ckeditor5_paragraph_src_paragraph__WEBPACK_IMPORTED_MODULE_2__["default"],
-            _ckeditor_ckeditor5_list_src_list__WEBPACK_IMPORTED_MODULE_4__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_bold__WEBPACK_IMPORTED_MODULE_5__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_6__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_underline__WEBPACK_IMPORTED_MODULE_7__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_strikethrough__WEBPACK_IMPORTED_MODULE_8__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_subscript__WEBPACK_IMPORTED_MODULE_9__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_superscript__WEBPACK_IMPORTED_MODULE_10__["default"]
+            _ckeditor_ckeditor5_essentials_src_essentials__WEBPACK_IMPORTED_MODULE_2__["default"],
+            _plugins_header__WEBPACK_IMPORTED_MODULE_12__["default"],
+            _ckeditor_ckeditor5_heading_src_heading__WEBPACK_IMPORTED_MODULE_4__["default"],
+            _ckeditor_ckeditor5_paragraph_src_paragraph__WEBPACK_IMPORTED_MODULE_3__["default"],
+            _ckeditor_ckeditor5_list_src_list__WEBPACK_IMPORTED_MODULE_5__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_bold__WEBPACK_IMPORTED_MODULE_6__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_7__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_underline__WEBPACK_IMPORTED_MODULE_8__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_strikethrough__WEBPACK_IMPORTED_MODULE_9__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_subscript__WEBPACK_IMPORTED_MODULE_10__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_superscript__WEBPACK_IMPORTED_MODULE_11__["default"]
         ],
-        toolbar: ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'subscript', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
+        toolbar: ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
     })
     .then(editor => {
         console.debug('Editor was initialized', editor);
@@ -98596,18 +98597,20 @@ _ckeditor_ckeditor5_editor_balloon_src_ballooneditor__WEBPACK_IMPORTED_MODULE_0_
 
 _ckeditor_ckeditor5_editor_balloon_src_ballooneditor__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.querySelector('#education .contenteditable'), {
         plugins: [
-            _ckeditor_ckeditor5_essentials_src_essentials__WEBPACK_IMPORTED_MODULE_1__["default"],
-            _ckeditor_ckeditor5_heading_src_heading__WEBPACK_IMPORTED_MODULE_3__["default"],
-            _ckeditor_ckeditor5_paragraph_src_paragraph__WEBPACK_IMPORTED_MODULE_2__["default"],
-            _ckeditor_ckeditor5_list_src_list__WEBPACK_IMPORTED_MODULE_4__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_bold__WEBPACK_IMPORTED_MODULE_5__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_6__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_underline__WEBPACK_IMPORTED_MODULE_7__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_strikethrough__WEBPACK_IMPORTED_MODULE_8__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_subscript__WEBPACK_IMPORTED_MODULE_9__["default"],
-            _ckeditor_ckeditor5_basic_styles_src_superscript__WEBPACK_IMPORTED_MODULE_10__["default"]
+            _ckeditor_ckeditor5_ui__WEBPACK_IMPORTED_MODULE_1__.BlockToolbar,
+            _ckeditor_ckeditor5_essentials_src_essentials__WEBPACK_IMPORTED_MODULE_2__["default"],
+            _ckeditor_ckeditor5_heading_src_heading__WEBPACK_IMPORTED_MODULE_4__["default"],
+            _ckeditor_ckeditor5_paragraph_src_paragraph__WEBPACK_IMPORTED_MODULE_3__["default"],
+            _ckeditor_ckeditor5_list_src_list__WEBPACK_IMPORTED_MODULE_5__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_bold__WEBPACK_IMPORTED_MODULE_6__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_italic__WEBPACK_IMPORTED_MODULE_7__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_underline__WEBPACK_IMPORTED_MODULE_8__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_strikethrough__WEBPACK_IMPORTED_MODULE_9__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_subscript__WEBPACK_IMPORTED_MODULE_10__["default"],
+            _ckeditor_ckeditor5_basic_styles_src_superscript__WEBPACK_IMPORTED_MODULE_11__["default"]
         ],
-        toolbar: ['heading', 'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'subscript', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
+        toolbar: ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 'link', 'undo', 'redo'],
+        blockToolbar: ['heading', 'numberedList', 'bulletedList']
     })
     .then(editor => {
         console.debug('Editor was initialized', editor);

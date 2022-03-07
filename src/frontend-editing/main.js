@@ -5,7 +5,7 @@
  */
 
 import BalloonEditor from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
-// import { BlockToolbar } from '@ckeditor/ckeditor5-ui';
+import { BlockToolbar } from '@ckeditor/ckeditor5-ui';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 // import Title from '@ckeditor/ckeditor5-heading/src/title';
@@ -35,7 +35,7 @@ BalloonEditor
             Subscript,
             Superscript
         ],
-        toolbar: ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'subscript', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
+        toolbar: ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
     })
     .then(editor => {
         console.debug('Editor was initialized', editor);
@@ -50,6 +50,7 @@ BalloonEditor
 BalloonEditor
     .create(document.querySelector('#education .contenteditable'), {
         plugins: [
+            BlockToolbar,
             Essentials,
             Heading,
             Paragraph,
@@ -61,7 +62,8 @@ BalloonEditor
             Subscript,
             Superscript
         ],
-        toolbar: ['heading', 'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'subscript', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
+        toolbar: ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 'link', 'undo', 'redo'],
+        blockToolbar: ['heading', 'numberedList', 'bulletedList']
     })
     .then(editor => {
         console.debug('Editor was initialized', editor);
