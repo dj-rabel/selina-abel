@@ -1,0 +1,35 @@
+body {
+  --ck-focus-outer-shadow: none;
+  --ck-inner-shadow: -5px 0px 3px -2px var(--ck-color-shadow-inner), 5px 0px 3px -2px var(--ck-color-shadow-inner);
+  --ck-focus-ring: none;
+}
+
+aside {
+  --ck-color-shadow-inner: rgba(255,255,255,0.25);
+  --ck-inner-shadow: -5px 0px 3px -2px var(--ck-color-shadow-inner), 5px 0px 3px -2px var(--ck-color-shadow-inner);
+}
+
+.ck-body {
+  &.ckcustom-white {
+    .ck-block-toolbar-button {
+      $buttonBackground: #fff;
+      --ck-color-button-default-hover-background: #{adjust-color($buttonBackground, $alpha: -0.5)};
+      --ck-color-button-default-active-background: #{$buttonBackground};
+      --ck-color-button-on-active-background: #{$buttonBackground};
+      --ck-color-button-on-hover-background: #{$buttonBackground};
+      --ck-color-button-on-background: #{$buttonBackground};
+      --ck-color-button-default-active-shadow: none;
+    }
+  }
+}
+
+.ce-block__content, .ce-toolbar__content, .cdx-block {
+  max-width: 100% !important;
+}
+
+.ck {
+  &.ck-block-toolbar-button {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+}

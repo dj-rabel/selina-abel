@@ -3,6 +3,8 @@ import first from '@ckeditor/ckeditor5-utils/src/first';
 import {enablePlaceholder, hidePlaceholder, needsPlaceholder, showPlaceholder} from '@ckeditor/ckeditor5-engine';
 
 const _headerTagName = 'header';
+const _titleTagName = 'h2';
+const _subtitleTagName = 'p';
 
 /**
  * The Header plugin.
@@ -31,6 +33,12 @@ export default class Header extends Plugin {
         const editor = this.editor;
         const model = editor.model;
 
+        editor.config.define('header', {enable: true});
+        if (!editor.config.get('header.enable')) {
+            // Return early if plugin is disabled =)
+            return;
+        }
+
         /**
          * A reference to an empty paragraph in the body
          * created when there is no element in the body for the placeholder purposes.
@@ -48,19 +56,21 @@ export default class Header extends Plugin {
         //     <title>The title text</title>
         //     <subtitle>The subtitle text</subtitle>
         // </header>
-        model.schema.register(this._headerElementName, {isBlock: true, allowIn: '$root'});
+        model.schema.register(this._headerElementName, {isObject: true, allowIn: '$root'});
         model.schema.register(this._titleElementName, {
-            isBlock: true,
+            isObject: true,
             allowIn: this._headerElementName,
             allowAttributes: ['alignment']
         });
-        model.schema.register(this._subtitleElementName, {
-            isBlock: true,
-            allowIn: this._headerElementName,
-            allowAttributes: ['alignment']
-        });
-        model.schema.extend('$text', {allowIn: this._titleElementName});
-        model.schema.extend('$text', {allowIn: this._subtitleElementName});
+        model.schema.extend('$text', {allowIn: this._titleElementName, isInline: true});
+        if (!!this.editor.config.get('subtitle.enable')) {
+            model.schema.register(this._subtitleElementName, {
+                isObject: true,
+                allowIn: this._headerElementName,
+                allowAttributes: ['alignment']
+            });
+            model.schema.extend('$text', {allowIn: this._subtitleElementName, isInline: true});
+        }
 
         // Disallow all attributes in `title-content`.
         model.schema.addAttributeCheck(context => {
@@ -70,9 +80,22 @@ export default class Header extends Plugin {
         });
 
         // Conversion.
-        editor.conversion.elementToElement({model: this._headerElementName, view: _headerTagName});
-        editor.conversion.elementToElement({model: this._titleElementName, view: 'h1', converterPriority: 'high'});
-        editor.conversion.elementToElement({model: this._subtitleElementName, view: 'p', converterPriority: 'high' });
+        editor.conversion.elementToElement({
+            model: this._headerElementName,
+            view: this.editor.config.get('header.view') || _headerTagName
+        });
+        editor.conversion.elementToElement({
+            model: this._titleElementName,
+            view: this.editor.config.get('title.view') || _titleTagName,
+            converterPriority: 'high'
+        });
+        if (!!editor.config.get('subtitle.enable')) {
+            editor.conversion.elementToElement({
+                model: this._subtitleElementName,
+                view: this.editor.config.get('subtitle.view') || _subtitleTagName,
+                converterPriority: 'high'
+            });
+        }
 
         // Take care about correct `header` element structure.
         model.document.registerPostFixer(writer => this._fixHeaderContent(writer));
@@ -126,22 +149,28 @@ export default class Header extends Plugin {
 
         const headerChildren = Array.from(header.getChildren());
 
-        if(headerChildren[0]) {
-            if(!headerChildren[0].is('element', this._titleElementName)) {
+        if (headerChildren[0]) {
+            if (!headerChildren[0].is('element', this._titleElementName)) {
                 writer.rename(headerChildren[0], this._titleElementName);
             }
             headerChildren.shift();
         }
 
-        if(headerChildren[0]) {
-            if(!headerChildren[0].is('element', this._subtitleElementName)) {
-                writer.rename(headerChildren[0], this._subtitleElementName);
-            }
-            headerChildren.shift();
+        if (header.maxOffset === 1) {
+            return false;
         }
 
-        if (header.maxOffset === 1 || header.maxOffset === 2) {
-            return false;
+        if (!!this.editor.config.get('subtitle.enable')) {
+            if (headerChildren[0]) {
+                if (!headerChildren[0].is('element', this._subtitleElementName)) {
+                    writer.rename(headerChildren[0], this._subtitleElementName);
+                }
+                headerChildren.shift();
+            }
+
+            if (header.maxOffset === 2) {
+                return false;
+            }
         }
 
         // If there are more than two elements in `header`, move them to `body`
@@ -176,7 +205,9 @@ export default class Header extends Plugin {
 
         writer.insert(header, modelRoot);
         writer.insertElement(this._titleElementName, header, 'end');
-        writer.insertElement(this._subtitleElementName, header, 'end');
+        if (!!this.editor.config.get('subtitle.enable')) {
+            writer.insertElement(this._subtitleElementName, header, 'end');
+        }
 
         return true;
     }
@@ -251,14 +282,16 @@ export default class Header extends Plugin {
                 keepOnFocus: true
             });
         });
-        editor.editing.downcastDispatcher.on('insert:' + this._subtitleElementName, (evt, data, conversionApi) => {
-            enablePlaceholder({
-                view,
-                element: conversionApi.mapper.toViewElement(data.item),
-                text: subtitlePlaceholder,
-                keepOnFocus: true
+        if (!!editor.config.get('subtitle.enable')) {
+            editor.editing.downcastDispatcher.on('insert:' + this._subtitleElementName, (evt, data, conversionApi) => {
+                enablePlaceholder({
+                    view,
+                    element: conversionApi.mapper.toViewElement(data.item),
+                    text: subtitlePlaceholder,
+                    keepOnFocus: true
+                });
             });
-        });
+        }
 
         // Attach placeholder to first element after a title element and remove it if it's not needed anymore.
         // First element after title can change so we need to observe all changes keep placeholder in sync.

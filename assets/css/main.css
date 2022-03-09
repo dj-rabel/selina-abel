@@ -16,7 +16,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 html, body, div, span, applet, object,
-iframe, h1, h2, h3, h4, h5, h6, p, .ce-paragraph, blockquote,
+iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, b,
@@ -1135,8 +1135,8 @@ br.clear {
   clear: both;
 }
 
-p, .ce-paragraph, ul, ol, dl, table, blockquote, form {
-  margin-bottom: 2em;
+p, ul, ol, dl, table, blockquote, form {
+  margin-bottom: 1.5em;
 }
 
 /* Helper */
@@ -1238,7 +1238,7 @@ section > :last-child, section:last-child, article > :last-child, article:last-c
 header {
   margin: 0 0 1.5em 0;
 }
-header > p, header > .ce-paragraph {
+header > p {
   margin: 0.5em 0 0 0;
   color: #aaa;
 }
@@ -1438,9 +1438,6 @@ ul.actions li:first-child {
 
 /* Nav */
 #nav {
-  text-align: center;
-  height: 4.25em;
-  cursor: default;
   display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
@@ -1449,6 +1446,10 @@ ul.actions li:first-child {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  text-align: center;
+  height: 4.25em;
+  cursor: default;
+  z-index: 1000;
 }
 #nav a {
   position: relative;
@@ -1618,28 +1619,30 @@ body.is-preload #wrapper {
     padding: 2em 1.5em 1.5em 1.5em;
   }
 }
-#main > .panel > header {
+#main > .panel:not(.intro) header {
   position: absolute;
   left: 0;
   top: 4em;
   line-height: 1.5;
+  width: 100%;
   color: #fff;
+  --ck-color-engine-placeholder-text: rgba(255, 255, 255, 0.35);
 }
-#main > .panel > header > * {
+#main > .panel:not(.intro) header > * {
   color: inherit;
 }
 @media screen and (max-width: 1280px) {
-  #main > .panel > header {
+  #main > .panel:not(.intro) header {
     top: 3em;
   }
 }
 @media screen and (max-width: 980px) {
-  #main > .panel > header {
+  #main > .panel:not(.intro) header {
     top: 1.5em;
   }
 }
 @media screen and (max-width: 736px) {
-  #main > .panel > header {
+  #main > .panel:not(.intro) header {
     position: static;
     color: inherit;
   }
@@ -1773,24 +1776,35 @@ body.is-preload #wrapper {
   -webkit-flex-shrink: 1;
   -ms-flex-shrink: 1;
   flex-shrink: 1;
-  padding: 3.5em 2.5em;
-  margin-bottom: 0;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 0 2.5em;
   width: 100%;
+  min-height: 100%;
 }
-#main > .panel.intro .text p, #main > .panel.intro .text .ce-paragraph {
+#main > .panel.intro .bodytext p {
   letter-spacing: -0.015em;
   font-size: 0.8em;
   line-height: 1.5em;
-  margin: 0.6em 0 0 0;
 }
-#main > .panel.intro .text header h1 {
+#main > .panel.intro .bodytext header h1 {
   line-height: 1.25em;
   margin-bottom: 0;
 }
-#main > .panel.intro .text header p, #main > .panel.intro .text header .ce-paragraph {
+#main > .panel.intro .bodytext header p {
   font-size: 1.25em;
   line-height: 1;
-  margin: 0.25em 0 0 0;
+  margin: 0.25em 0 0 0 !important;
 }
 @media screen and (max-width: 980px) {
   #main > .panel.intro {
@@ -1816,7 +1830,7 @@ body.is-preload #wrapper {
   #main > .panel.intro .text {
     padding: 2.75em 2em 2.5em 2em;
   }
-  #main > .panel.intro .text header p, #main > .panel.intro .text header .ce-paragraph {
+  #main > .panel.intro .text header p {
     font-size: 1em;
     margin: 0.25em 0 0 0;
   }
@@ -1860,19 +1874,20 @@ body.is-preload #wrapper {
   width: 100%;
   height: auto;
 }
-#main .sidebar div > * {
+#main .sidebar .bodytext > * {
   margin-bottom: 0;
 }
 @media screen and (min-width: 737px) {
   #main .sidebar img {
     margin-bottom: 0.5em;
   }
-  #main .sidebar div {
+  #main .sidebar .bodytext {
     font-size: 0.8em;
     line-height: 1.5;
-    padding-right: 0.8em;
+    margin-right: 0 !important;
+    padding-right: 0.5em !important;
   }
-  #main .sidebar div > * {
+  #main .sidebar .bodytext > * {
     color: #fff;
   }
 }
@@ -1907,14 +1922,69 @@ body.is-preload #wrapper {
     max-width: 8em;
     margin-bottom: 0;
   }
-  #main .sidebar div {
+  #main .sidebar .bodytext {
     font-size: 1.2em;
     align-items: center;
     padding-right: 1.5em;
   }
 }
 
+/* Footer */
+#footer {
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+  padding: 2em 0 0 0;
+  font-size: 0.75em;
+}
+#footer a {
+  color: #ddd;
+  color: rgba(255, 255, 255, 0.65);
+  -moz-transition: color .25s ease-in-out;
+  -webkit-transition: color .25s ease-in-out;
+  -ms-transition: color .25s ease-in-out;
+  transition: color .25s ease-in-out;
+}
+#footer a:hover {
+  color: white;
+}
+#footer .copyright {
+  list-style: none;
+  padding-left: 0;
+}
+#footer .copyright li {
+  display: inline-block;
+  padding-left: 1em;
+  margin-left: 1em;
+  border-left: solid 1px rgba(255, 255, 255, 0.25);
+  line-height: 1;
+}
+#footer .copyright li:first-child {
+  padding-left: 0;
+  margin-left: 0;
+  border-left: 0;
+}
+@media screen and (max-width: 736px) {
+  #footer .copyright li {
+    padding-left: 0.5em;
+    margin-left: 0.5em;
+  }
+}
+
 /* Elements */
+.bodytext {
+  padding: 0 0.5em !important;
+  margin-left: -0.5em;
+  margin-right: -0.5em;
+  border: 0 !important;
+  text-align: inherit !important;
+}
+.bodytext > :first-child {
+  margin-top: 0 !important;
+}
+.bodytext > :last-child {
+  margin-bottom: 0 !important;
+}
+
 .post {
   position: relative;
   overflow: hidden;
@@ -1973,7 +2043,7 @@ body.is-preload #wrapper {
 .post > header .meta time {
   font-weight: 600;
 }
-.post > p, .post > .ce-paragraph {
+.post > p {
   text-align: justify;
 }
 .post > footer {
@@ -2086,53 +2156,34 @@ ul.contact li:first-child {
   padding-left: 0;
 }
 
-/* Footer */
-#footer {
-  color: rgba(255, 255, 255, 0.45);
-  text-align: center;
-  padding: 2em 0 0 0;
-  font-size: 0.75em;
-}
-#footer a {
-  color: #ddd;
-  color: rgba(255, 255, 255, 0.65);
-  -moz-transition: color .25s ease-in-out;
-  -webkit-transition: color .25s ease-in-out;
-  -ms-transition: color .25s ease-in-out;
-  transition: color .25s ease-in-out;
-}
-#footer a:hover {
-  color: white;
-}
-#footer .copyright {
-  list-style: none;
-  padding-left: 0;
-}
-#footer .copyright li {
-  display: inline-block;
-  padding-left: 1em;
-  margin-left: 1em;
-  border-left: solid 1px rgba(255, 255, 255, 0.25);
-  line-height: 1;
-}
-#footer .copyright li:first-child {
-  padding-left: 0;
-  margin-left: 0;
-  border-left: 0;
-}
-@media screen and (max-width: 736px) {
-  #footer .copyright li {
-    padding-left: 0.5em;
-    margin-left: 0.5em;
-  }
+/* CKEditor */
+body {
+  --ck-focus-outer-shadow: none;
+  --ck-inner-shadow: -5px 0px 3px -2px var(--ck-color-shadow-inner), 5px 0px 3px -2px var(--ck-color-shadow-inner);
+  --ck-focus-ring: none;
 }
 
-.ce-paragraph {
-  line-height: inherit;
+aside {
+  --ck-color-shadow-inner: rgba(255,255,255,0.25);
+  --ck-inner-shadow: -5px 0px 3px -2px var(--ck-color-shadow-inner), 5px 0px 3px -2px var(--ck-color-shadow-inner);
+}
+
+.ck-body.ckcustom-white .ck-block-toolbar-button {
+  --ck-color-button-default-hover-background: rgba(255, 255, 255, 0.5);
+  --ck-color-button-default-active-background: #fff;
+  --ck-color-button-on-active-background: #fff;
+  --ck-color-button-on-hover-background: #fff;
+  --ck-color-button-on-background: #fff;
+  --ck-color-button-default-active-shadow: none;
 }
 
 .ce-block__content, .ce-toolbar__content, .cdx-block {
   max-width: 100% !important;
+}
+
+.ck.ck-block-toolbar-button {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
 
 /*# sourceMappingURL=main.css.map */
