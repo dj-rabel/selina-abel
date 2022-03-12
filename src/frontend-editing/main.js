@@ -4,20 +4,19 @@
  * @see https://ckeditor.com/docs/ckeditor5/latest/api/
  */
 
-import BalloonEditor from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
+import {BalloonEditor} from '@ckeditor/ckeditor5-editor-balloon';
 import {BlockToolbar} from '@ckeditor/ckeditor5-ui';
-import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
+import {Essentials} from '@ckeditor/ckeditor5-essentials';
 import Header from './plugins/header';
-import {Heading, HeadingButtonsUI} from '@ckeditor/ckeditor5-heading';
+
 import {Paragraph, ParagraphButtonUI} from '@ckeditor/ckeditor5-paragraph';
-import List from '@ckeditor/ckeditor5-list/src/list';
-import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
-import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
-import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
-import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
-import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
-import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
-import {Link, AutoLink} from '@ckeditor/ckeditor5-link';
+import {Heading, HeadingButtonsUI} from '@ckeditor/ckeditor5-heading';
+import {List} from '@ckeditor/ckeditor5-list';
+import {BlockQuote} from '@ckeditor/ckeditor5-block-quote';
+
+import {Bold, Italic, Strikethrough, Subscript, Superscript, Underline} from '@ckeditor/ckeditor5-basic-styles';
+import {AutoLink, Link} from '@ckeditor/ckeditor5-link';
+
 import _ from 'lodash-es';
 
 window.editors = [];
@@ -46,6 +45,7 @@ document.querySelectorAll('section .contenteditable').forEach(elem => {
                 HeadingButtonsUI,
                 Paragraph,
                 ParagraphButtonUI,
+                BlockQuote,
                 List,
                 Bold,
                 Italic,
@@ -64,7 +64,7 @@ document.querySelectorAll('section .contenteditable').forEach(elem => {
                 ],
             },
             toolbar: ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 'link'],
-            blockToolbar: ['paragraph', 'heading3', 'heading4', 'numberedList', 'bulletedList', 'undo', 'redo']
+            blockToolbar: ['paragraph', 'heading3', 'heading4', 'numberedList', 'bulletedList', 'blockQuote', 'undo', 'redo']
         }, ckconfig))
         .then(editor => {
             console.debug('Editor was initialized', editor);
@@ -80,7 +80,7 @@ document.querySelectorAll('section .contenteditable').forEach(elem => {
 BalloonEditor
     .create(document.querySelector('aside .contenteditable'), {
         plugins: [
-            BlockToolbar,
+            // BlockToolbar,
             Header,
             Essentials,
             Heading,

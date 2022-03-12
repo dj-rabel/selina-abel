@@ -5,12 +5,25 @@
   @include vendor('flex-direction', 'row');
   @include vendor('align-items', 'center');
 
+
+
   &.inactive ~ .sidebar {
-    display: block;
+    //display: block;
     pointer-events: initial;
-    transition-delay: 0.75s;
-    opacity: 1;
-    @include vendor('transform', 'translateX(0em)');
+    @include breakpoint('>=medium') {
+      opacity: 1;
+      @include vendor('transform', 'translateX(0em)');
+      @include vendor('transition-delay', '0.75s');
+    }
+  }
+  @include breakpoint('<=small') {
+    &.inactive ~ .sidebar {
+      position: relative;
+    }
+    &.inactive ~ .panel:not(.inactive) ~ .sidebar {
+      opacity: 1;
+      @include vendor('transition-delay', '0s');
+    }
   }
 
   .pic {

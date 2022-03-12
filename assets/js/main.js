@@ -95,22 +95,18 @@
 
         // Get panel, link.
         if (window.location.hash) {
-
             $panel = $panels.filter(window.location.hash);
             $link = $nav_links.filter('[href="' + window.location.hash + '"]');
 
             // No target panel? Bail.
             if ($panel.length == 0)
                 return;
-
         }
 
         // No panel/link? Default to first.
         else {
-
             $panel = $panels.first();
             $link = $nav_links.first();
-
         }
 
         // Deactivate all panels.

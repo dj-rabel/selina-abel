@@ -198,12 +198,6 @@ a {
   color: inherit;
 }
 
-blockquote {
-  border-left: solid 0.5em #ddd;
-  padding: 1em 0 1em 2em;
-  font-style: italic;
-}
-
 strong, b {
   font-weight: $font-weight-bold;
 }
@@ -237,6 +231,14 @@ br.clear {
 
 p, ul, ol, dl, table, blockquote, form {
   margin-bottom: 1.5em;
+}
+blockquote {
+  border-left: solid 0.5em #ddd;
+  padding: 1em 0 1em 2em;
+  font-style: italic;
+  & > p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 /* Helper */
@@ -583,10 +585,10 @@ ul.actions {
 /* Main */
 
 #main {
-  //position: relative;
+  position: relative;
   //overflow: hidden;
-  @include vendor('display', 'flex');
-  @include vendor('flex-direction', 'row-reverse');
+  //@include vendor('display', 'flex');
+  //@include vendor('flex-direction', 'row-reverse');
   width: 100%;
   background: #ffffff;
   @include vendor('transition', (
@@ -595,6 +597,7 @@ ul.actions {
   ));
 
   @include breakpoint('<=small') {
+    @include vendor('display', 'flex');
     @include vendor('flex-direction', 'column-reverse');
   }
 
@@ -610,10 +613,11 @@ ul.actions {
       padding: $spacing-section-top-small $spacing-section-left-small 1.5em $spacing-section-right-small;
     }
 
-    &:not(.intro) header {
+    &:not(.intro) .bodytext > header,
+    &:not(.intro) > header {
       position: absolute;
       left: 0;
-      top: 4em;
+      top: -4.25em;
       line-height: 1.5;
       width: 100%;
       $color: #fff;
@@ -659,10 +663,12 @@ ul.actions {
   }
 
   .sidebar {
-    position: relative;
+    position: absolute;
     pointer-events: none;
     opacity: 0;
+    top: 0;
     width: 7em;
+    height: 100%;
     margin-left: -7em;
     text-align: right;
     $sidebar-transition-options: ' 0.25s ease-in-out 0s';
@@ -710,11 +716,11 @@ ul.actions {
     }
 
     @include breakpoint('<=small') {
-      display: none;
       width: 100%;
       margin-left: 0;
       padding: $spacing-section-right-small $spacing-section-right-small 0 $spacing-section-left-small;
-      @include vendor('transition', 'none');
+      @include vendor('transform', 'none');
+      @include vendor('transition-delay', '0s');
 
       header {
         @include vendor('display', 'flex');
@@ -732,7 +738,7 @@ ul.actions {
       .bodytext {
         font-size: 1.2em;
         align-items: center;
-        padding-right: $spacing-section-left-small;
+        margin-right: $spacing-section-left-small;
       }
     }
   }
