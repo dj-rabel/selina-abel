@@ -2016,6 +2016,11 @@ body.is-preload #wrapper {
   background: #ffffff;
   border-top: solid 1px rgba(160, 160, 160, 0.3);
 }
+@media screen and (min-width: 737px) {
+  .bodytext > header + .post--pre {
+    display: none;
+  }
+}
 @media screen and (max-width: 736px) {
   .post {
     padding: 2em 1.5em 1em 1.5em;

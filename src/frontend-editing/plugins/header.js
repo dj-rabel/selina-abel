@@ -82,17 +82,44 @@ export default class Header extends Plugin {
         // Conversion.
         editor.conversion.elementToElement({
             model: this._headerElementName,
-            view: this.editor.config.get('header.view') || _headerTagName
+            view: editor.config.get('header.view') || _headerTagName
         });
+        // @see https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/conversion/upcast.html#converting-structures
+        // editor.conversion.for('upcast').add(dispatcher => {
+        //     dispatcher.on('element:' + _headerTagName, (evt, data, conversionApi) => {
+        //         const {
+        //             consumable,
+        //             writer,
+        //             safeInsert,
+        //             convertChildren,
+        //             updateConversionResult
+        //         } = conversionApi;
+        //
+        //         // Get view item from data object.
+        //         const { viewItem } = data;
+        //
+        //         if(viewItem !== viewItem.parent.getChild(0)) {
+        //             return;
+        //         }
+        //
+        //         consumable.consume();
+        //     });
+
+            // model: 'post-title',
+            // view: {
+            //     name: 'div',
+            //     classes: 'title'
+            // }
+        // });
         editor.conversion.elementToElement({
             model: this._titleElementName,
-            view: this.editor.config.get('title.view') || _titleTagName,
+            view: editor.config.get('title.view') || _titleTagName,
             converterPriority: 'high'
         });
         if (!!editor.config.get('subtitle.enable')) {
             editor.conversion.elementToElement({
                 model: this._subtitleElementName,
-                view: this.editor.config.get('subtitle.view') || _subtitleTagName,
+                view: editor.config.get('subtitle.view') || _subtitleTagName,
                 converterPriority: 'high'
             });
         }
@@ -227,6 +254,8 @@ export default class Header extends Plugin {
             this._bodyPlaceholder = writer.createElement('paragraph');
             writer.insert(this._bodyPlaceholder, modelRoot, 1);
 
+            // Return true tells ckeditor "we modified something, run all post-fixers again"
+            // @see https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_model_document-Document.html#function-registerPostFixer
             return true;
         }
 
