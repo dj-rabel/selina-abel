@@ -18,9 +18,11 @@
     "postcss-loader": "4",
     "raw-loader": "4",
     "sass": "^1.49.9",
+    "sergey": "^0.0.13",
     "style-loader": "2",
     "webpack": "5",
-    "webpack-cli": "4"
+    "webpack-cli": "4",
+    "yargs": "^17.3.1"
   },
   "scripts": {
     "webpack:dev": "./node_modules/.bin/webpack --mode development"
