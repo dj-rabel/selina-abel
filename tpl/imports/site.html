@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<!--
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+  <title><sergey-slot name="title">Selina Abel | M.Sc. Psych.</sergey-slot></title>
+  <sergey-import src="meta.html"/>
+  <sergey-import src="styles.html"/>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper-->
+<div id="wrapper">
+
+  <!-- Nav -->
+  <nav id="nav">
+    <sergey-link to="/index.html" class="icon solid fa-hand-spock"><span>Me</span></sergey-link>
+    <sergey-link to="/education.html" class="icon solid fa-graduation-cap"><span>Edu</span></sergey-link>
+    <sergey-link to="/publications.html" class="icon solid fa-book"><span>Pub</span></sergey-link>
+    <sergey-link to="/curriculum-vitae.html" class="icon solid fa-id-badge"><span>CV</span></sergey-link>
+  </nav>
+
+  <!-- Main -->
+  <main id="main">
+
+    <!-- Me -->
+    <section id="me" class="panel intro">
+      <div class="text">
+        <div class="bodytext contenteditable" data-editable="me" data-ckconfig='{"title":{"view":"h1"},"subtitle":{"enable":1}}'>
+          <sergey-import src="editables/me.html"/>
+        </div>
+      </div>
+      <div class="pic">
+        <img src="images/me.jpg" alt=""/>
+        <aside>
+          <a href="/education.html" class="jumplink">
+            <span class="linktext">Lern about me</span>
+            <span class="icon solid fa-chevron-right"></span>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Edu -->
+    <section id="education" class="panel">
+      <div class="bodytext contenteditable" data-editable="education">
+        <sergey-import src="editables/education.html"/>
+      </div>
+    </section>
+
+    <!-- Pub -->
+    <section id="publications" class="panel seamless">
+      <div class="bodytext contenteditable" data-editable="publications">
+        <sergey-import src="editables/publications.html"/>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section id="curriculum-vitae" class="panel">
+      <div class="bodytext contenteditable" data-editable="curriculum-vitae">
+        <sergey-import src="editables/curriculum-vitae.html"/>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <header class="sticky">
+        <img src="images/avatar.jpg" alt="Avatar"/>
+        <div class="bodytext contenteditable" data-editable="sidebar" data-ckconfig='{"header":{"enable":0}}'>
+          <sergey-import src="editables/sidebar.html"/>
+        </div>
+      </header>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer">
+    <div class="bodytext contenteditable" data-editable="footer">
+      <sergey-import src="editables/footer.html"/>
+    </div>
+  </div>
+
+</div>
+
+<sergey-import src="scripts.html"/>
+
+</body>
+</html>

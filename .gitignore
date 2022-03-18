@@ -1,2 +1,10 @@
+var/*
+!var/.gitkeep
+*.log
+.cache
+.DS_Store
+src/.temp
 node_modules
-yarn-error.log
+dist
+.env
+.env.*

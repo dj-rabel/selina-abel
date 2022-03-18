@@ -1,4 +1,17 @@
 {
+  "name": "@dj-rabel/selina-edu-website",
+  "private": true,
+  "scripts": {
+    "deploy": "gh-pages -d dist",
+
+    "sass": "yarn sass:dev",
+    "sass:dev": "./node_modules/.bin/sass ./scss:./web/assets/dist --style=compressed --error-css --update --source-map --no-stop-on-error --color",
+    "sass:dev:watch": "yarn sass:dev --watch",
+    "sass:prod": "./node_modules/.bin/sass ./scss:./web/assets/dist --style=compressed --no-error-css --no-source-map --stop-on-error --quiet --no-verbose",
+
+    "webpack:dev": "./node_modules/.bin/webpack --mode development",
+    "sergey": ".bin/sergey-wrapper --root=./tpl/ --imports=imports --output=../web --exclude=web,imports"
+  },
   "devDependencies": {
     "@ckeditor/ckeditor5-basic-styles": "^33.0.0",
     "@ckeditor/ckeditor5-block-quote": "^33.0.0",
@@ -12,7 +25,10 @@
     "@ckeditor/ckeditor5-theme-lark": "^33.0.0",
     "@ckeditor/ckeditor5-ui": "^33.0.0",
     "@ckeditor/ckeditor5-widget": "^33.0.0",
+    "@gridsome/cli": "^0.3.4",
     "css-loader": "5",
+    "gh-pages": "^3.2.3",
+    "gridsome": "^0.7.23",
     "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^2.6.0",
     "postcss-loader": "4",
@@ -23,8 +39,5 @@
     "webpack": "5",
     "webpack-cli": "4",
     "yargs": "^17.3.1"
-  },
-  "scripts": {
-    "webpack:dev": "./node_modules/.bin/webpack --mode development"
   }
 }

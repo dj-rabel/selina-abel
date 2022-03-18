@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ProjectTasksOptions">
     <TaskOptions isEnabled="true">
-      <option name="arguments" value="$FileName$:../css/$FileNameWithoutExtension$.css" />
+      <option name="arguments" value="$FileName$:$ProjectFileDir$/web/assets/dist/$FileNameWithoutExtension$.css" />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" />
       <option name="exitCodeBehavior" value="ERROR" />
       <option name="fileExtension" value="scss" />
       <option name="immediateSync" value="false" />
       <option name="name" value="SCSS" />
-      <option name="output" value="../css/$FileNameWithoutExtension$.css:../css/$FileNameWithoutExtension$.css.map" />
+      <option name="output" value="$ProjectFileDir$/web/assets/dist/$FileNameWithoutExtension$.css:$ProjectFileDir$/web/assets/dist/$FileNameWithoutExtension$.css.map" />
       <option name="outputFilters">
         <array />
       </option>
@@ -29,15 +29,35 @@
       <option name="fileExtension" value="js" />
       <option name="immediateSync" value="false" />
       <option name="name" value="Webpack:dev" />
-      <option name="output" value="$ProjectFileDir$\assets\dist" />
+      <option name="output" value="$ProjectFileDir$\web\assets\dist" />
       <option name="outputFilters">
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
       <option name="program" value="$ProjectFileDir$/node_modules/.bin/webpack" />
       <option name="runOnExternalChanges" value="true" />
-      <option name="scopeName" value="webpack dir" />
+      <option name="scopeName" value="source dir" />
       <option name="trackOnlyRoot" value="true" />
+      <option name="workingDir" value="$ProjectFileDir$" />
+      <envs />
+    </TaskOptions>
+    <TaskOptions isEnabled="true">
+      <option name="arguments" value="" />
+      <option name="checkSyntaxErrors" value="true" />
+      <option name="description" />
+      <option name="exitCodeBehavior" value="ERROR" />
+      <option name="fileExtension" value="html" />
+      <option name="immediateSync" value="true" />
+      <option name="name" value="Sergey" />
+      <option name="output" value="$ProjectFileDir$\web" />
+      <option name="outputFilters">
+        <array />
+      </option>
+      <option name="outputFromStdout" value="false" />
+      <option name="program" value="$PROJECT_DIR$/.bin/sergey-wrapper" />
+      <option name="runOnExternalChanges" value="true" />
+      <option name="scopeName" value="template dir" />
+      <option name="trackOnlyRoot" value="false" />
       <option name="workingDir" value="$ProjectFileDir$" />
       <envs />
     </TaskOptions>

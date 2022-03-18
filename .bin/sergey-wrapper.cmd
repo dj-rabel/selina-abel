@@ -1,4 +1,6 @@
-mkdir --parents ./templates/imports
-call .\node_modules\.bin\sergey --root=./templates/ --output=./out --imports=./imports --exclude=out,imports
-move /Y .\templates\out\*.html .\
-rmdir .\templates\out
+mkdir .\var\build\sergey
+mkdir .\tpl\imports
+call .\node_modules\.bin\sergey --root=./tpl/ --imports=./imports --output=../var/build/sergey --exclude=imports
+del .\web\*.html
+move /Y .\var\build\sergey\*.html .\web\
+rmdir .\var\build\sergey

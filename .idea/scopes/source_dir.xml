@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="source dir" pattern="file[selina-abel]:src/frontend-editing//*" />
+</component>

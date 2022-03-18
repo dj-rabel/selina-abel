@@ -1,14 +1,14 @@
 'use strict';
 
-const path = require( 'path' );
-const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
+const path = require('path');
+const {styles} = require('@ckeditor/ckeditor5-dev-utils');
 // const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 var config = {
-    entry: path.join(path.resolve( __dirname, 'src/frontend-editing' ), 'main.js'),
+    entry: path.join(path.resolve(__dirname, 'src/frontend-editing'), 'main.js'),
 
     output: {
-        path: path.resolve( __dirname, 'assets/dist' ),
+        path: path.resolve(__dirname, 'web/assets/dist'),
         filename: 'frontend-editing.js'
     },
 
@@ -22,7 +22,7 @@ var config = {
         rules: [
             {
                 test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
-                use: [ 'raw-loader' ]
+                use: ['raw-loader']
             },
             // {
             //     test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
@@ -58,12 +58,12 @@ var config = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            postcssOptions: styles.getPostCssConfig( {
+                            postcssOptions: styles.getPostCssConfig({
                                 themeImporter: {
-                                    themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
+                                    themePath: require.resolve('@ckeditor/ckeditor5-theme-lark')
                                 },
                                 minify: true
-                            } )
+                            })
                         }
                     }
                 ]
@@ -72,9 +72,8 @@ var config = {
     },
 
     // By default webpack logs warnings if the bundle is bigger than 200kb.
-    performance: { hints: false }
+    performance: {hints: false}
 }
-
 
 module.exports = (env, argv) => {
     if (argv.mode === 'development') {
