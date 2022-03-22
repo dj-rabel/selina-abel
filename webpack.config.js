@@ -1,87 +1,73 @@
 'use strict';
 
-const path = require('path');
-const {styles} = require('@ckeditor/ckeditor5-dev-utils');
-// const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+import webpack from 'webpack';
+import {VueLoaderPlugin} from 'vue-loader';
+import path from 'path';
+import {fileURLToPath} from 'url';
 
-var config = {
-    entry: path.join(path.resolve(__dirname, 'src/frontend-editing'), 'main.js'),
+const DefinePlugin = webpack.DefinePlugin;
 
-    output: {
-        path: path.resolve(__dirname, 'web/assets/dist'),
-        filename: 'frontend-editing.js'
-    },
+const __filename = fileURLToPath(import.meta.url),
+    __dirname = path.dirname(__filename);
 
-    // plugins: [
-    //     new MiniCssExtractPlugin( {
-    //         filename: 'frontend-editing.css'
-    //     } )
-    // ],
+const baseConfig = {
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+    ],
+  },
 
-    module: {
-        rules: [
-            {
-                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
-                use: ['raw-loader']
-            },
-            // {
-            //     test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
-            //     use: [
-            //         MiniCssExtractPlugin.loader,
-            //         'css-loader',
-            //         {
-            //             loader: 'postcss-loader',
-            //             options: {
-            //                 postcssOptions: styles.getPostCssConfig( {
-            //                     themeImporter: {
-            //                         themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
-            //                     },
-            //                     minify: true
-            //                 } )
-            //             }
-            //         }
-            //     ]
-            // }
-            {
-                test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                        options: {
-                            injectType: 'singletonStyleTag',
-                            attributes: {
-                                'data-cke': true
-                            }
-                        }
-                    },
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            postcssOptions: styles.getPostCssConfig({
-                                themeImporter: {
-                                    themePath: require.resolve('@ckeditor/ckeditor5-theme-lark')
-                                },
-                                minify: true
-                            })
-                        }
-                    }
-                ]
-            }
-        ]
-    },
+  resolve: {
+    fallback: {
 
-    // By default webpack logs warnings if the bundle is bigger than 200kb.
-    performance: {hints: false}
-}
-
-module.exports = (env, argv) => {
-    if (argv.mode === 'development') {
-        config.devtool = 'source-map';
-        config.cache = {
-            type: 'filesystem',
-        };
     }
+  },
 
-    return config;
+  plugins: [
+    // Define Bundler Build Feature Flags
+    new DefinePlugin({
+      // Drop Options API from bundle
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: process.env.NODE_ENV === 'development',
+    }),
+    new VueLoaderPlugin(),
+  ],
 };
+
+const serverConfig = Object.assign({}, baseConfig, {
+  experiments: {
+    outputModule: true,
+    topLevelAwait: true,
+  },
+
+  // target: 'node',
+
+  entry: path.join(path.resolve(__dirname, 'src'), 'main.js'),
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+    // library: '[name]',
+    libraryExport: 'default',
+    libraryTarget: 'module', // you can use libraries everywhere, e.g requirejs, node
+    umdNamedDefine: true,
+  },
+});
+const clientConfig = Object.assign({}, baseConfig, {
+  target: 'web',
+
+  entry: path.join(path.resolve(__dirname, 'src'), 'client.js'),
+  output: {
+    filename: 'client.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+});
+
+export default [serverConfig];

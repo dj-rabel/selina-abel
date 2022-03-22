@@ -1,3 +1,3 @@
 <component name="DependencyValidationManager">
-  <scope name="template dir" pattern="file[selina-abel]:tpl//*" />
+  <scope name="template dir" pattern="file[selina-abel]:_tpl//*" />
 </component>
